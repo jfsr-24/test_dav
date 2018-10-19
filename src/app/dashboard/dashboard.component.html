@@ -1,0 +1,31 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <!-- <span><img src="./assets/logo.png"></span> -->
+        <span class="paddingtop6p"><mat-icon>home</mat-icon></span>
+        <span class="paddingleft10p">CRM</span>
+
+        <span class="example-fill-remaining-space"></span>
+        <span class="align-center"></span>
+        <span class="example-spacer"></span>
+
+        <button mat-icon-button [mat-menu-trigger-for]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+    </mat-toolbar-row>
+
+  </mat-toolbar>
+  <mat-menu x-position="before" #menu="matMenu">
+
+    <!-- <button mat-menu-item (click)="gotoSection('actividad')">CRM</button> -->
+    <button mat-menu-item (click)="logout()">Salir</button>
+  </mat-menu>
+
+  <div class="container">
+    <p style="color:rgb(153, 153, 153)" class="welcome">Bienvenido, {{user}}</p>
+  </div>
+
+  <router-outlet></router-outlet>
+
+</div>

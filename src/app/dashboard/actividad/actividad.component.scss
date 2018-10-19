@@ -1,0 +1,135 @@
+.content{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+  .example-selected-value {
+    margin: 15px 0;
+    border: 1px solid gray;
+    border-radius: 7px;
+    padding: 4px 4px 4px 8px;
+  }
+
+  .colorsel{
+    color: #5d5d5d;
+  }
+
+  .fontsep{
+    font-size: 20px;
+  }
+
+  .marginright{
+    margin-right: 80px;
+  }
+
+  .matlistborder{
+    border: 1px solid gray;
+    border-radius: 14px;
+  }
+
+  .filenameborder{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .bradius14{
+    border-radius: 14px;
+  }
+
+  .custominput{
+    border-top: 0px;
+    border-left: 0px;
+    border-bottom: 1px solid gray;
+    border-right: 0px;
+  }
+
+  .aviso{
+    font-size: 13px;
+    color: gray;
+  }
+
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+    padding-left: 8px;
+  }
+
+  .mleft5{
+    margin-left: 5px;
+  }
+
+  mat-row:hover {
+    background-color: rgb(231, 231, 231);
+  }
+   
+  .back-chip{
+    font-size: 18px;
+    font-family: sans-serif;
+  }
+  
+  .p-chip-cam{
+      text-align: center;
+      background: #3f51b5;
+      color: white;
+      font-size: 18px;
+      font-family: sans-serif;
+      padding-top: 5px;
+      width: 50%;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+  }
+  
+  .p-chip-reg{
+    text-align: center;
+    background: #2c77ff;
+    color: white;
+    font-size: 18px;
+    font-family: sans-serif;
+    padding-top: 5px;
+    width: 50%;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+  }
+
+  .p-chip-val{
+    font-size: 20px;
+    font-family: sans-serif;
+    width: 50%;
+    border: 1px solid gray;
+    margin-top: 14px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+  }
+
+  @media (max-width: 600px) {
+    .p-chip-cam, .p-chip-reg, .p-chip-val{
+      width: 90%
+    }
+  }
+
+  .sinreg{
+    text-align: center;
+    font-size: 20px;
+    color: #cccccc;
+  }
+
+  .divnoreg{
+    height: 288px;
+    margin-top: 25px;
+    padding-top: 85px;
+    border: 1px solid gray;
+    border-radius: 1px;
+  }
+  

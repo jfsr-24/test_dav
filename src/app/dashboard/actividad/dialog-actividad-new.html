@@ -1,0 +1,19 @@
+
+
+<!-- <mat-toolbar [color]="['primary']" md-dialog-title>Agregar Proceso</mat-toolbar> -->
+<h1 mat-dialog-title>Agregar Actividad</h1>
+<div mat-dialog-content>
+  <p>Ingrese la Actividad a agregar</p>
+  <mat-form-field style="width: 100%;">
+    <input matInput placeholder="Nombre Actividad" type="text" [(ngModel)]="data.nombre_actividad">
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%;">
+    <input matInput placeholder="Precio Venta" type="number" [(ngModel)]="data.precio_venta_publico">
+  </mat-form-field>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+</div>

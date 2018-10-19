@@ -1,0 +1,97 @@
+<div class="content">
+
+  <div class="container" style="margin-left:30px; margin-right:30px;">  
+    <mat-grid-list cols="2" rowHeight="30px">
+      <mat-grid-tile> 
+          <p style="text-align:center;" class="p-chip-cam">
+            <span>Campañas</span>
+          </p>
+      </mat-grid-tile>
+      <mat-grid-tile> 
+        <p style="text-align:center;" class="p-chip-reg">
+          <span>Registros</span>
+        </p>
+      </mat-grid-tile>
+      <mat-grid-tile> 
+          <p style="text-align:center;" class="p-chip-val">
+            <span>{{totalcam  | number:'1.0-0'}}</span>
+          </p>
+      </mat-grid-tile>
+      <mat-grid-tile> 
+        <p style="text-align:center;" class="p-chip-val">
+          <span>{{totalreg  | number:'1.0-0'}}</span>
+        </p>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <div class="container" style="margin-left:30px; margin-right:30px; margin-bottom:30px;">
+      <br><br>
+      <div class="button-row">
+        <button style=" float: right;" mat-raised-button (click)="import()" color="primary">
+          <mat-icon>person_add</mat-icon> Cargar Archivo Plano
+        </button>
+      </div>
+      
+      <br><br>
+      <div class="divnoreg" *ngIf="totalreg == 0">
+        <p class="sinreg">
+          <mat-icon style="font-size: 100px;">person_add</mat-icon>
+          <br>
+          <span>No se encontraron registros</span>
+          <br><br>
+          <span style="font-size: 16px;">Haga clic en el botón <b>Cargar Archivo Plano</b><br> para importar registros</span>
+          <br>
+        </p>
+      </div>
+      <div *ngIf="totalreg > 0">
+          <mat-form-field style="width:100%;">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+          </mat-form-field>
+
+          <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="NOMBRES">
+              <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.NOMBRES}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="APELLIDOS">
+              <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.APELLIDOS}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="TELEFONO">
+              <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.TELEFONO }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="DIRECCION">
+              <mat-header-cell *matHeaderCellDef> Dirección </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.DIRECCION }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="CAMPANA_NOMBRE">
+              <mat-header-cell *matHeaderCellDef> Campaña </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.CAMPANA_NOMBRE }} </mat-cell>
+            </ng-container>
+
+            <!-- actions -->
+            <ng-container matColumnDef="accion">
+              <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+
+              <mat-cell *matCellDef="let row; let i=index;">
+                <button mat-icon-button color="accent" (click)="deleteItem(row.SEQ_CLIENTE,row.NOMBRES,row.APELLIDOS)">
+                  <mat-icon color="primary" aria-label="Delete">delete</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+      </div>
+  </div>
+
+  
+</div>

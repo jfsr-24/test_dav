@@ -1,0 +1,93 @@
+
+
+<!-- <mat-toolbar [color]="['primary']" md-dialog-title>Importar Fichero</mat-toolbar> -->
+<h5 mat-dialog-title>Cargar Archivo Plano</h5>
+<hr>
+
+<div mat-dialog-content>
+  
+  <!-- Paso 1 -->
+  <div *ngIf="paso === 1">
+    <p><b>Paso {{paso}}:</b> Elija un <b>separador</b></p>  
+    <mat-radio-group class="example-radio-group" [(ngModel)]="data.option_sep">
+        <mat-radio-button class="example-radio-button" *ngFor="let op of data.options" [value]="op.name">
+            <span class="fontsep" *ngIf="op.name != 'Otro'">{{op.name}}</span>
+            <div *ngIf="op.name == 'Otro'">
+                <input style="width:100%;" placeholder="Palabra Clave" class="fontsep custominput" [disabled]="data.option_sep != 'Otro'" matInput  [value]="data.otro_sep" [(ngModel)]="data.otro_sep">
+            </div>
+        </mat-radio-button>
+    </mat-radio-group>
+    <div class="example-selected-value "><span class="colorsel">Separador: </span>
+        <span class="fontsep" *ngIf="data.option_sep != 'Otro'">{{data.option_sep}} </span>
+        <span class="fontsep" *ngIf="data.option_sep == 'Otro'">{{data.otro_sep}}</span>
+        <br>
+    </div>
+
+  </div>
+
+  <div *ngIf="paso === 2">
+        <p><b>Paso {{paso}}:</b> Seleccione el <b>archivo</b> a cargar</p>  
+
+        <!-- attach_file -->
+        <div class="container ">
+            <button style="width: 100%;" mat-raised-button color="primary" (click)="fileInput.click()"><mat-icon matListIcon>attach_file</mat-icon>Subir Archivo</button>
+            <input hidden type="file" #fileInput (change)="changeListener($event)">
+            <br><br>
+            <span class="aviso"><b>Nota:</b></span>
+            <ul style="margin-top: 0px; margin-bottom: 0px;">
+                <li class="aviso">El archivo debe ser un archivo plano. <br>(Ej: .csv, .txt)</li>
+                <li class="aviso">La primera linea del archivo debe contener los nombres de cada columna</li>
+            </ul>
+            <br>
+        </div>
+        
+        <div class="container filenameborder" *ngIf="filename">
+            <span >&nbsp;&nbsp;<b>Campaña</b> {{filename.split(".")[0]}}</span>
+        </div>
+
+  </div>
+
+  <div *ngIf="paso === 3">
+        <p><b>Paso {{paso}}:</b> Relacione cada columna del archivo con su correspondiente</p>  
+
+        <mat-list *ngFor="let opcol of options_column">
+            <mat-list-item class="matlistborder"> 
+                <mat-icon matListIcon>radio_button_checked</mat-icon>
+                <span class="marginright"> {{opcol.name}} </span>
+                <mat-select [(ngModel)]="opcol.colname" placeholder="Columna" (change)="eventSelection($event.value)">
+                    <mat-option *ngFor="let col of columns" [value]="col.name">{{ col.name }}</mat-option>
+                </mat-select>
+            </mat-list-item>
+        </mat-list>
+
+        <!-- {{options_column  | json}} -->
+        
+        <!-- Old version-->
+        <!-- <ng-container *ngFor="let col of columns">
+            <mat-checkbox [checked]="col.state" [(ngModel)]="col.state">{{col.name}}</mat-checkbox>            
+            <br/>
+        </ng-container>  -->
+        <!-- {{columns | json}} -->
+  </div>
+
+  <div *ngIf="paso === 4">
+
+        <p><b>Paso {{paso}}:</b> Proceso Finalizado</p>  
+        <div class="container" style=" height: 60px;">
+            <mat-chip-list>
+                <mat-chip style="margin-left:23%;" color="primary" selected><span class="fontsep">{{numreg}}</span> &nbsp;&nbsp; Registros Analizados</mat-chip>
+            </mat-chip-list>
+        </div>
+  </div>
+
+  
+</div>
+
+<div mat-dialog-actions style="float: right;">
+
+  <button *ngIf="paso === 1 || paso === 2 || paso === 3" mat-stroked-button color="accent" (click)="onNoClick()">Cancelar</button>
+  <button class="mleft5"  *ngIf="paso === 2 || paso === 3" mat-stroked-button (click)="AntPaso()">Anterior</button>
+  <button class="mleft5" *ngIf="paso === 1 || paso === 2 || paso === 3" mat-stroked-button color="primary" (click)="SigPaso()">Siguiente</button>
+  <button style="float:right;" *ngIf="paso === 4" mat-stroked-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+
+</div>

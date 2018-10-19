@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+
+      <span>Sistema CRM</span>
+
+      <span class="example-spacer"></span>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="signin-content" style="background: #dbe8ff; background-image: linear-gradient(#bfd5fd, #ffffff85);">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p style="font-size: 25px; color: gray; ">
+          <mat-icon style="font-size: 7pc; color: #3f51b5; padding-right: 84px;">poll</mat-icon><br> 
+          <span>Sistema CRM</span></p>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Usuario" formControlName="userName" required>
+          <mat-error *ngIf="isFieldInvalid('userName')">
+            Por favor digite su nombre de usuario
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Contrasena" formControlName="password" required>
+          <mat-error *ngIf="isFieldInvalid('userName')">
+            Por favor digite su contrasena
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Enviar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
